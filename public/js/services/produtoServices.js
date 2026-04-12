@@ -1,4 +1,4 @@
-async function carregarProdutos(){
+export async function carregarProdutos(){
     try{
         const response = await fetch('http://localhost:1400/listar-produtos');
         const produtos = await response.json();
@@ -22,4 +22,14 @@ async function carregarProdutos(){
     }
 }
 
-window.onload = carregarProdutos;
+export async function cadastrarProdutos(produtoData){
+    const response = await fetch('http://localhost:1400/produtos',{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(produtoData)
+    });
+    if (!response.ok) throw new Error('Erro ao cadastrar produto');
+    return await response.text();
+}
