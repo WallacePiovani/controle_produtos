@@ -13,3 +13,15 @@ export const cadastrarProduto = async (req, res) =>{
         res.status(500).send('Erro ao cadastrar produto');
     }
 }
+
+export const listarProdutos = async (req, res) =>{
+    try{
+        const produtos = await produtoModel.listarProdutos();
+        res.status(200).json(produtos);
+    }
+    catch (err){
+        console.log(`Erro ao listar produtos: ${err}`);
+        res.status(500).send('Erro ao listar produtos');
+    }
+
+}

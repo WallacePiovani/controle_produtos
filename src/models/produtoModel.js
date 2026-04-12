@@ -12,3 +12,14 @@ export const cadastrarProduto = async (nome, preco) =>{
         throw err; //Vai enviar o erro para o controller(qnd eu criar) para trata-lo.
     }
 }
+
+export const listarProdutos = async () =>{
+    try{
+        const [rows] = await db.query('SELECT * FROM produto');
+        return rows;
+    }
+    catch(err){
+        console.log(`Erro ao listar produtos: ${err}`);
+        throw err;
+    }
+}
