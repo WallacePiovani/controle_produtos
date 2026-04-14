@@ -33,3 +33,12 @@ export async function cadastrarProdutos(produtoData){
     if (!response.ok) throw new Error('Erro ao cadastrar produto');
     return await response.text();
 }
+
+export async function atualizarProdutos (id, produtoData){
+    const response = await fetch (`http://localhost:1400/produtos/${id}`,{
+        method: 'PUT',
+        headers:{'Content-type':'application/json'},
+        body: JSON.stringify(produtoData)
+    });
+    return await response.text();
+}
