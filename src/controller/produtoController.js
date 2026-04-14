@@ -27,5 +27,16 @@ export const listarProdutos = async (req, res) =>{
 }
 
 export const atualizarProduto = async (req, res) =>{
-    
+    const id = req.params.id;
+    const nomeProduto = req.body.produto;
+    const precoProduto = req.body.preco;
+
+    try{
+        const result = await produtoModel.atualizarProduto(id, nomeProduto, precoProduto);
+        res.status(200).json(result);
+    }
+    catch (err){
+        console.log(`Erro ao atualizar produto: ${err}`);
+        res.status(500).send('Erro ao atualizar produto');
+    }
 }

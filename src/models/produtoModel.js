@@ -27,7 +27,7 @@ export const listarProdutos = async () =>{
 export const atualizarProduto = async (id, nome ,preco) =>{
     try{
         const [result] = await db.query(
-            'UPDATE produto SET nomeProduto = ?, preco = ? where idProduto = ?' [nome, preco, id]
+            'UPDATE produto SET nomeProduto = ?, preco = ? where idProduto = ?', [nome, preco, id]
         );
         return result;
     }
