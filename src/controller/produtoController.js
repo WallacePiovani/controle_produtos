@@ -25,3 +25,7 @@ export const listarProdutos = async (req, res) =>{
     }
 
 }
+
+export const atualizarProduto = async (req, res) =>{
+    
+}

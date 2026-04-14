@@ -9,7 +9,7 @@ export const cadastrarProduto = async (nome, preco) =>{
         return result;
     }catch(err){
         console.log(`Erro ao cadastrar produto: ${err}`);
-        throw err; //Vai enviar o erro para o controller(qnd eu criar) para trata-lo.
+        throw err; 
     }
 }
 
@@ -20,6 +20,19 @@ export const listarProdutos = async () =>{
     }
     catch(err){
         console.log(`Erro ao listar produtos: ${err}`);
+        throw err;
+    }
+}
+
+export const atualizarProduto = async (id, nome ,preco) =>{
+    try{
+        const [result] = await db.query(
+            'UPDATE produto SET nomeProduto = ?, preco = ? where idProduto = ?' [nome, preco, id]
+        );
+        return result;
+    }
+    catch(err){
+        console.log(`Erro ao atualizar produto: ${err}`);
         throw err;
     }
 }
