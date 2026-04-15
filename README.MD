@@ -72,7 +72,7 @@ O projeto foi estruturado seguindo o padrão de arquitetura **MVC (Model-View-Co
    Utilize o script abaixo no seu MySQL Workbench ou terminal:
    ```sql
    CREATE TABLE produto (
-       idProduto INT PRIMARY KEY AUTO_INCREMENT,
+       id INT PRIMARY KEY AUTO_INCREMENT,
        nomeProduto VARCHAR(255) NOT NULL,
        preco DECIMAL(10,2) NOT NULL
    );
