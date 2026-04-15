@@ -11,7 +11,7 @@ export const cadastrarProduto = async (nome, preco) =>{
         console.log(`Erro ao cadastrar produto: ${err}`);
         throw err; 
     }
-}
+};
 
 export const listarProdutos = async () =>{
     try{
@@ -22,7 +22,7 @@ export const listarProdutos = async () =>{
         console.log(`Erro ao listar produtos: ${err}`);
         throw err;
     }
-}
+};
 
 export const atualizarProduto = async (id, nome ,preco) =>{
     try{
@@ -35,4 +35,17 @@ export const atualizarProduto = async (id, nome ,preco) =>{
         console.log(`Erro ao atualizar produto: ${err}`);
         throw err;
     }
-}
+};
+
+export const deletarProduto = async (id) => {
+    try{
+        const [result] = await db.query(
+            'DELETE FROM produto WHERE id = ?', [id]
+        );
+        return result;
+    }
+    catch(err){
+        console.log(`Erro ao deletar produto: ${err}`);
+        throw err;
+    }
+};

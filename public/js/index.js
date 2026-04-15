@@ -41,4 +41,19 @@ window.onload = function(){
         document.querySelector('button[type="submit"]').textContent = 'Salvar Alterações';
         
     }
+
+    window.confirmarExclusao = async (id) => {
+        const confirmacao = window.confirm('Tem certeza que deseja excluir este produto?');
+        if(confirmacao){
+            try{
+                await produtoServices.excluirProdutos(id);
+                window.alert('Produto excluído com sucesso!');
+                listarProdutos.carregarProdutos();
+            }
+            catch(err) {
+                console.error('Erro ao excluir produto:', err);
+            }
+
+        }
+    }
 }

@@ -40,3 +40,16 @@ export const atualizarProduto = async (req, res) =>{
         res.status(500).send('Erro ao atualizar produto');
     }
 }
+
+export const deletarProduto = async (req, res) =>{
+    const id = req.params.id;
+    
+    try{
+        const result = await produtoModel.deletarProduto(id);
+        res.status(200).json(result);
+    }
+    catch(err){
+        console.log(`Erro ao deletar produto: ${err}`);
+        res.status(500).send('Erro ao deletar produto');
+    };
+}
