@@ -1,5 +1,6 @@
 import * as listarProdutos from './services/produtoServices.js';
 import * as cadastrarProduto from './services/produtoServices.js';
+import * as produtoServices from './services/produtoServices.js';
 
 window.onload = function(){
     listarProdutos.carregarProdutos();
@@ -9,16 +10,35 @@ window.onload = function(){
 
         const nomeProduto = document.querySelector('#produto').value;
         const preco = document.querySelector('#preco').value;
+        const idExiste = document.querySelector('#produto-id').value;
 
-        try{
-            await cadastrarProduto.cadastrarProdutos({produto: nomeProduto, preco: preco});
-            window.alert(`O produto: ${nomeProduto} foi cadastrado com sucesso!` );
-            form.reset();
-            listarProdutos.carregarProdutos();
-            window.location.reload();
+        if(idExiste){
+            await produtoServices.atualizarProdutos(idExiste, {produto: nomeProduto, preco: preco});
+            document.querySelector('#produto-id').value = '';
+            document.querySelector('button[type="submit"]').textContent = 'Cadastrar Produto';
+            window.alert(`O produto: ${nomeProduto} foi atualizado com sucesso!` );
         }
-        catch (err) {
-            console.error('Erro ao cadastrar produto:', err);
+        else{
+            try{
+                await cadastrarProduto.cadastrarProdutos({produto: nomeProduto, preco: preco});
+                window.alert(`O produto: ${nomeProduto} foi cadastrado com sucesso!` );
+                form.reset();
+                listarProdutos.carregarProdutos();
+                window.location.reload();
+            }
+            catch (err) {
+                console.error('Erro ao cadastrar produto:', err);
+            }
         }
-    })
+    });
+
+
+    window.editarProduto = function(id, nome,preco) {
+        document.querySelector('#produto').value = nome;
+        document.querySelector('#preco').value = preco;
+        document.querySelector('#produto-id').value = id;
+
+        document.querySelector('button[type="submit"]').textContent = 'Salvar Alterações';
+        
+    }
 }

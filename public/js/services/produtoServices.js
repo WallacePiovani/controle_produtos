@@ -12,6 +12,9 @@ export async function carregarProdutos(){
                 <td>${produto.id}</td>
                 <td>${produto.nomeProduto}</td>
                 <td>R$${produto.preco}</td>
+                <td>
+                    <button onclick="editarProduto(${produto.id}, '${produto.nomeProduto}', ${produto.preco})">Editar</button>
+                </td>
             </tr>
             `;
             tbody.innerHTML += linha;
