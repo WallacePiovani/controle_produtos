@@ -33,6 +33,8 @@ export const atualizarProduto = async (req, res) =>{
 
     try{
         const result = await produtoModel.atualizarProduto(id, nomeProduto, precoProduto);
+        console.log(`Produto atualizado com sucesso: ${result.affectedRows} linha(s) afetada(s)`);
+        console.log(`Produto atualizado: ID ${id}, Nome: ${nomeProduto}, Preço: R$${precoProduto}`);
         res.status(200).json(result);
     }
     catch (err){
@@ -46,6 +48,7 @@ export const deletarProduto = async (req, res) =>{
     
     try{
         const result = await produtoModel.deletarProduto(id);
+        console.log(`Produto deletado com sucesso: ${result.affectedRows} linha(s) afetada(s)`);
         res.status(200).json(result);
     }
     catch(err){
